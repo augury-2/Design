@@ -3,6 +3,9 @@
 Event poster for **Graphic Era (Deemed to be University), Dehradun**.
 Theme: **India's Cultural Mosaic** — *One India • Many Cultures • One Celebration*.
 
+Bright, vibrant, festival-coloured artwork aimed at a young MBA audience. No
+dark, antique or luxury-event treatment anywhere in the set.
+
 ## Event details as set in the artwork
 
 | Field | Value |
@@ -23,57 +26,77 @@ Theme: **India's Cultural Mosaic** — *One India • Many Cultures • One Cele
 | `social/freshers-2026-digital-display-2x3.jpg` | 1600 × 2400 | campus screens |
 | `social/freshers-2026-web-preview.jpg` | 1240 × 1754 | web / email |
 
-Social crops are letterboxed onto a matching maroon field with a gold keyline, so
-no part of the composition is ever cut off.
+Social crops are letterboxed onto a warm ivory field with confetti and a fine
+rainbow keyline, so no part of the composition is ever cut off.
 
 ## Design system
 
-**Layout.** Vertical editorial hierarchy: university masthead, theme eyebrow,
-`FRESHERS` display headline, `2026` on flanking rules, batch line, theme line, a
-cusped-arch hero panel, then the event information block.
+**Palette.** Bright Indian festival colours only — saffron, orange, marigold,
+yellow, coral, pink, magenta, orchid, purple, royal blue, cyan, turquoise, green
+and lime, on a white/ivory base. The darkest ink in the poster is a deep violet
+used for type. No black, navy, maroon, brown, charcoal, antique gold or bronze.
 
-**Structure.** The hero sits inside a cusped multifoil Mughal arch built from an
-ogee Bézier profile, scalloped along the curve and finished with a gold band, an
-inner hairline, a lotus keystone and a finial.
+**Layout.** Vertical hierarchy: university masthead → theme eyebrow →
+`FRESHERS` display headline → `2026` between rainbow rules → batch pill → theme
+line → marigold garland → hero arch of students in regional attire → cultural
+mosaic ribbon → event cards.
+
+**Background.** White-to-ivory base lifted by local pastel colour blooms in the
+corners, flowing textile colour bands across the top, middle and foot, faint
+mandala watermarks, and scattered confetti of petals, diamonds, rings and dots.
+
+**Hero.** A cusped multifoil arch built from an ogee Bézier profile, scalloped
+along the curve, wrapped in a saturated rainbow band with a white inner
+hairline, a marigold rosette keystone and a soft magenta lift instead of a dark
+drop shadow.
+
+**Cultural mosaic ribbon.** One strip under the hero stitched from six regional
+craft traditions, each patch in its own hue over a pale wash of the same colour:
+Warli dancers (Maharashtra), phulkari darning (Punjab), aipan (Uttarakhand),
+Assamese woven diamonds, lehariya waves (Rajasthan) and an Indian floral vine.
 
 **Ornament.** Everything is drawn procedurally — no stock clip art. Quarter
-mandalas in the corners, concentric mandala watermarks, paisley/boteh motifs,
-lotus rosettes, kanjeevaram temple-triangle borders and diamond-chain textile
-selvedge rules.
+rangoli medallions in the corners, a rainbow keyline frame, paisley/boteh pairs,
+a marigold garland swag, a jali lattice whisper, mandala watermarks and
+temple-triangle bands. `motifs.py` also carries Madhubani and Pattachitra bands,
+petal bursts and full rangoli medallions for future variants.
 
-**Cultural mosaic panel.** The arch is filled with a patchwork of ten
-procedurally generated regional textile patterns — bandhani, ikat, phulkari,
-kanjeevaram temple stripe, paithani, Assamese woven band, kalamkari vine,
-chikankari, Kashmiri boteh and Uttarakhandi aipan — overlaid with a jali lattice,
-a rangoli medallion, marigold swags and a row of brass diyas.
+**Event details.** Placed on vivid gradient cards — saffron→pink for the date,
+turquoise→royal blue for the time, orchid→purple for the venue — each with a
+soft coloured shadow.
 
-**Palette.** Deep maroon field, royal saffron centre glow, indigo lower corners,
-deep green upper corners, muted gold and ivory typography, terracotta accents. No
-neon.
-
-**Typography.** Cinzel for the masthead and date, Rozha One for the `FRESHERS`
-display line, Jost for event details, Cormorant Garamond for the theme line. Gold
-foil fills are vertical gradients masked through the glyphs.
+**Typography.** Montserrat for the masthead, `2026` and the date; Rozha One for
+the `FRESHERS` display line with a horizontal Holi-gradient fill and a white
+outline; Jost for the pills and event text. Regional textile patterns for the
+procedural panel come from `textiles.py`.
 
 ## Rebuilding
 
 ```bash
 pip install pillow
 cd src
-python3 centrepiece.py                                    # arch panel
-python3 poster.py centrepiece.png ../print/poster.png     # master poster
-python3 export.py ../print/poster.png ../social           # delivery sizes
+python3 poster.py hero.jpg ../print/Freshers-2026-MBA-GraphicEra.png
+python3 export.py ../print/Freshers-2026-MBA-GraphicEra.png ../social
 ```
 
-`poster.py` accepts any image as its first argument and will cover-fit it into the
-arch, so the panel can be swapped for photography without touching the layout.
+`poster.py` accepts any image as its first argument and cover-fits it into the
+arch, so the hero can be swapped without touching the layout.
 
-`gen.py` with `hero_a.json` / `hero_b.json` generates a photographic group
-portrait of students in regional attire via the Bria FIBO API, for the
-photography variant of the hero panel:
+`centrepiece.py` renders a fully procedural alternative hero — a patchwork of
+ten regional textile patterns with a rangoli medallion and marigold swags — for
+use when photography is not available:
 
 ```bash
-python3 gen.py hero_a.json && python3 poster.py hero_a.png ../print/poster.png
+python3 centrepiece.py
+python3 poster.py centrepiece.png ../print/Freshers-2026-MBA-GraphicEra.png
+```
+
+`gen.py` with `hero_a.json` / `hero_b.json` regenerates the photographic group
+portrait of students in regional attire via the Bria FIBO API. `hero.jpg` is the
+selected `hero_b` frame and `hero-alt.jpg` the `hero_a` alternative:
+
+```bash
+python3 gen.py hero_b.json && python3 poster.py hero_b.png ../print/Freshers-2026-MBA-GraphicEra.png
 ```
 
 ## Fonts
